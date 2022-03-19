@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\IncomeController;
 
 /*
@@ -17,6 +18,9 @@ use App\Http\Controllers\IncomeController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('user', UserController::class)
+->middleware(['auth']);
 
 Route::resource('income', IncomeController::class)
 ->middleware(['auth']);
