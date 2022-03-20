@@ -73,7 +73,9 @@ class ExpenseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $expense = Expense::findOrFail($id);
+
+        return view('expense.edit', compact('expense'));
     }
 
     /**
@@ -85,7 +87,21 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'date' => ['required', 'date'],
+            'account' => ['required', 'string'],
+            'text' => ['required', 'max:100'],
+            'amount' => ['required', 'integer'],
+        ]);
+
+        $expense = Expense::findOrFail($id);
+        $expense->date = $request->date;
+        $expense->account = $request->account;
+        $expense->text = $request->text;
+        $expense->amount = $request->amount;
+        $expense->save();
+
+        return redirect()->route('expense.index')->with(['message' => '編集が完了しました', 'status' => 'info']);
     }
 
     /**
