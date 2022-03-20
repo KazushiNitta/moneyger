@@ -112,6 +112,8 @@ class ExpenseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Expense::findOrFail($id)->delete();
+
+        return redirect()->route('expense.index')->with(['message' => '削除が完了しました', 'status' => 'alert']);
     }
 }
