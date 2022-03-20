@@ -53,6 +53,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="mt-8">
+                                    {{ $incomes->links() }}
+                                </div>
                             </div>
                         </div>
                     </section>

@@ -18,7 +18,7 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        $incomes = Income::select('id', 'date', 'account', 'text', 'amount')->orderBy('date', 'asc')->get();
+        $incomes = Income::select('id', 'date', 'account', 'text', 'amount')->orderBy('date', 'asc')->paginate(10);
 
         return view('income.index', compact('incomes'));
     }
