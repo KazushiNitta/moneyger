@@ -18,7 +18,7 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        $incomes = Income::select('date', 'account', 'text', 'amount')->orderBy('date', 'asc')->get();
+        $incomes = Income::select('id', 'date', 'account', 'text', 'amount')->orderBy('date', 'asc')->get();
 
         return view('income.index', compact('incomes'));
     }
@@ -77,7 +77,9 @@ class IncomeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $income = Income::findOrFail($id);
+
+        return view('income.edit', compact('income'));
     }
 
     /**
@@ -89,7 +91,21 @@ class IncomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'date' => ['required', 'date'],
+            'account' => ['required', 'string'],
+            'text' => ['required', 'max:100'],
+            'amount' => ['required', 'integer'],
+        ]);
+
+        $income = Income::findOrFail($id);
+        $income->date = $request->date;
+        $income->account = $request->account;
+        $income->text = $request->text;
+        $income->amount = $request->amount;
+        $income->save();
+
+        return redirect()->route('income.index')->with('message', '編集が完了しました');
     }
 
     /**
