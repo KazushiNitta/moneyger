@@ -1638,10 +1638,5 @@ select {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-
-  .lg\:text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
 }
 
