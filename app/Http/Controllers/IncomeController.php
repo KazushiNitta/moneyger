@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Income;
 
 class IncomeController extends Controller
 {
@@ -17,7 +18,9 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        dd('収入一覧テスト');
+        $incomes = Income::select('date', 'account', 'text', 'amount')->orderBy('date', 'asc')->get();
+
+        return view('income.index', compact('incomes'));
     }
 
     /**
@@ -27,7 +30,7 @@ class IncomeController extends Controller
      */
     public function create()
     {
-        //
+        return view('income.create');
     }
 
     /**
@@ -38,7 +41,21 @@ class IncomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'date' => ['required', 'date'],
+            'account' => ['required', 'string'],
+            'text' => ['required', 'max:100'],
+            'amount' => ['required', 'integer'],
+        ]);
+
+        Income::create([
+            'date' => $request->date,
+            'account' => $request->account,
+            'text' => $request->text,
+            'amount' => $request->amount,
+        ]);
+
+        return redirect()->route('income.index')->with('message', '登録が完了しました');
     }
 
     /**

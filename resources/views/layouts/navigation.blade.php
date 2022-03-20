@@ -20,6 +20,9 @@
                     <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                         アカウント情報
                     </x-nav-link>
+                    <x-nav-link :href="route('income.index')" :active="request()->routeIs('income.index')">
+                        収入一覧
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -73,6 +76,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                 アカウント情報
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('income.index')" :active="request()->routeIs('income.index')">
+                収入一覧
             </x-responsive-nav-link>
         </div>
 
