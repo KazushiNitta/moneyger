@@ -26,7 +26,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+        return view('expense.create');
     }
 
     /**
@@ -37,7 +37,21 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'date' => ['required', 'date'],
+            'account' => ['required', 'string'],
+            'text' => ['required', 'max:100'],
+            'amount' => ['required', 'integer'],
+        ]);
+
+        Expense::create([
+            'date' => $request->date,
+            'account' => $request->account,
+            'text' => $request->text,
+            'amount' => $request->amount,
+        ]);
+
+        return redirect()->route('expense.index')->with(['message' => '登録が完了しました', 'status' => 'info']);
     }
 
     /**

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            収入の登録
+            支出の登録
         </h2>
     </x-slot>
 
@@ -12,40 +12,40 @@
                     <section class="text-gray-600 body-font relative">
                         <div class="container px-5 py-24 mx-auto">
                             <div class="flex flex-col text-center w-full mb-12">
-                                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">収入の登録</h1>
+                                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">支出の登録</h1>
                             </div>
                             <div class="lg:w-1/2 md:w-2/3 mx-auto">
                                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                                <form method="post" action="{{ route('income.store') }}">
+                                <form method="post" action="{{ route('expense.store') }}">
                                     @csrf
                                     <div class="-m-2">
                                         <div class="p-2 mx-auto">
                                             <div class="relative">
                                                 <label for="date" class="leading-7 text-sm text-gray-600">日付</label>
-                                                <input type="date" id="date" name="date" value="{{ old('date') }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                <input type="date" id="date" name="date" value="{{ old('date') }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                             </div>
                                         </div>
                                         <div class="p-2 mx-auto">
                                             <div class="relative">
                                                 <label for="account" class="leading-7 text-sm text-gray-600">科目</label>
-                                                <input type="text" id="account" name="account" value="{{ old('account') }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                <input type="text" id="account" name="account" value="{{ old('account') }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                             </div>
                                         </div>
                                         <div class="p-2 mx-auto">
                                             <div class="relative">
                                                 <label for="text" class="leading-7 text-sm text-gray-600">摘要</label>
-                                                <textarea id="text" name="text" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ old('text') }}</textarea>
+                                                <textarea id="text" name="text" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ old('text') }}</textarea>
                                             </div>
                                         </div>
                                         <div class="p-2 mx-auto">
                                             <div class="relative">
                                                 <label for="amount" class="leading-7 text-sm text-gray-600">金額</label>
-                                                <input type="number" id="amount" name="amount" value="{{ old('amount') }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                                <input type="number" id="amount" name="amount" value="{{ old('amount') }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                             </div>
                                         </div>
                                         <div class="flex justify-around mt-4">
-                                            <button type="button" onclick="location.href='{{ route('income.index') }}'" class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">戻る</button>
-                                            <button type="submit" class="inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg">登録</button>
+                                            <button type="button" onclick="location.href='{{ route('expense.index') }}'" class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">戻る</button>
+                                            <button type="submit" class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">登録</button>
                                         </div>
                                     </div>
                                 </form>
