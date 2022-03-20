@@ -55,7 +55,7 @@ class IncomeController extends Controller
             'amount' => $request->amount,
         ]);
 
-        return redirect()->route('income.index')->with('message', '登録が完了しました');
+        return redirect()->route('income.index')->with(['message' => '登録が完了しました', 'status' => 'info']);
     }
 
     /**
@@ -105,7 +105,7 @@ class IncomeController extends Controller
         $income->amount = $request->amount;
         $income->save();
 
-        return redirect()->route('income.index')->with('message', '編集が完了しました');
+        return redirect()->route('income.index')->with(['message' => '編集が完了しました', 'status' => 'info']);
     }
 
     /**
@@ -116,6 +116,8 @@ class IncomeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Income::findOrFail($id)->delete();
+
+        return redirect()->route('income.index')->with(['message' => '削除が完了しました', 'status' => 'alert']);
     }
 }
