@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Income;
+use App\Models\Account;
 
 class IncomeController extends Controller
 {
@@ -18,7 +19,7 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        $incomes = Income::select('id', 'date', 'account', 'text', 'amount')->orderBy('date', 'asc')->paginate(10);
+        $incomes = Income::select('id', 'date', 'account_id', 'text', 'amount')->orderBy('date', 'asc')->paginate(10);
 
         return view('income.index', compact('incomes'));
     }
@@ -30,7 +31,9 @@ class IncomeController extends Controller
      */
     public function create()
     {
-        return view('income.create');
+        $accounts = Account::where('id', '<', 8)->select('id', 'name')->get();
+
+        return view('income.create', compact('accounts'));
     }
 
     /**
@@ -43,14 +46,14 @@ class IncomeController extends Controller
     {
         $request->validate([
             'date' => ['required', 'date'],
-            'account' => ['required', 'string'],
+            'account_id' => ['required', 'integer'],
             'text' => ['required', 'max:100'],
             'amount' => ['required', 'integer'],
         ]);
 
         Income::create([
             'date' => $request->date,
-            'account' => $request->account,
+            'account_id' => $request->account_id,
             'text' => $request->text,
             'amount' => $request->amount,
         ]);
@@ -78,8 +81,9 @@ class IncomeController extends Controller
     public function edit($id)
     {
         $income = Income::findOrFail($id);
+        $accounts = Account::where('id', '<', 8)->where('id', '<>', $income->account_id)->select('id', 'name')->get();
 
-        return view('income.edit', compact('income'));
+        return view('income.edit', compact('income', 'accounts'));
     }
 
     /**
@@ -93,14 +97,14 @@ class IncomeController extends Controller
     {
         $request->validate([
             'date' => ['required', 'date'],
-            'account' => ['required', 'string'],
+            'account_id' => ['required', 'integer'],
             'text' => ['required', 'max:100'],
             'amount' => ['required', 'integer'],
         ]);
 
         $income = Income::findOrFail($id);
         $income->date = $request->date;
-        $income->account = $request->account;
+        $income->account_id = $request->account_id;
         $income->text = $request->text;
         $income->amount = $request->amount;
         $income->save();

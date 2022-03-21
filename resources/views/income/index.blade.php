@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            収入一覧
+            収入管理
         </h2>
     </x-slot>
 
@@ -36,7 +36,7 @@
                                         @foreach ($incomes as $income)
                                         <tr>
                                             <td class="px-4 py-3">{{ $income->date }}</td>
-                                            <td class="px-4 py-3">{{ $income->account }}</td>
+                                            <td class="px-4 py-3">{{ $income->account->name }}</td>
                                             <td class="px-4 py-3">{{ $income->text }}</td>
                                             <td class="px-4 py-3 text-lg text-gray-900">¥{{ number_format($income->amount) }}</td>
                                             <td class="md:px-2 md:py-3 text-center">

@@ -21,10 +21,10 @@
                         アカウント情報
                     </x-nav-link>
                     <x-nav-link :href="route('income.index')" :active="request()->routeIs('income.index')">
-                        収入一覧
+                        収入管理
                     </x-nav-link>
                     <x-nav-link :href="route('expense.index')" :active="request()->routeIs('expense.index')">
-                        支出一覧
+                        支出管理
                     </x-nav-link>
                 </div>
             </div>
@@ -81,10 +81,10 @@
                 アカウント情報
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('income.index')" :active="request()->routeIs('income.index')">
-                収入一覧
+                収入管理
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('expense.index')" :active="request()->routeIs('expense.index')">
-                支出一覧
+                支出管理
             </x-responsive-nav-link>
         </div>
 

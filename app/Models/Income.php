@@ -12,7 +12,7 @@ class Income extends Model
 
     protected $fillable = [
         'date',
-        'account',
+        'account_id',
         'text',
         'amount',
     ];
