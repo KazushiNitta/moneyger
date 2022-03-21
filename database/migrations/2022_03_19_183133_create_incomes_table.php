@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->string('account');
+            $table->foreignId('account_id')->constrained();
             $table->text('text');
             $table->unsignedInteger('amount');
             $table->timestamps();
