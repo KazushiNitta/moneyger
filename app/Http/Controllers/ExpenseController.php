@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Expense;
+use App\Models\Account;
 
 class ExpenseController extends Controller
 {
@@ -14,7 +15,7 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::select('id', 'date', 'account', 'text', 'amount')->orderBy('date', 'asc')->paginate(10);
+        $expenses = Expense::select('id', 'date', 'account_id', 'text', 'amount')->orderBy('date', 'asc')->paginate(10);
 
         return view('expense.index', compact('expenses'));
     }
@@ -26,7 +27,9 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        return view('expense.create');
+        $accounts = Account::where('id', '>', 7)->select('id', 'name')->get();
+
+        return view('expense.create', compact('accounts'));
     }
 
     /**
@@ -39,14 +42,14 @@ class ExpenseController extends Controller
     {
         $request->validate([
             'date' => ['required', 'date'],
-            'account' => ['required', 'string'],
+            'account_id' => ['required', 'integer'],
             'text' => ['required', 'max:100'],
             'amount' => ['required', 'integer'],
         ]);
 
         Expense::create([
             'date' => $request->date,
-            'account' => $request->account,
+            'account_id' => $request->account_id,
             'text' => $request->text,
             'amount' => $request->amount,
         ]);
@@ -74,8 +77,9 @@ class ExpenseController extends Controller
     public function edit($id)
     {
         $expense = Expense::findOrFail($id);
+        $accounts = Account::where('id', '>', 7)->where('id', '<>', $expense->account_id)->select('id', 'name')->get();
 
-        return view('expense.edit', compact('expense'));
+        return view('expense.edit', compact('expense', 'accounts'));
     }
 
     /**
@@ -89,14 +93,14 @@ class ExpenseController extends Controller
     {
         $request->validate([
             'date' => ['required', 'date'],
-            'account' => ['required', 'string'],
+            'account_id' => ['required', 'integer'],
             'text' => ['required', 'max:100'],
             'amount' => ['required', 'integer'],
         ]);
 
         $expense = Expense::findOrFail($id);
         $expense->date = $request->date;
-        $expense->account = $request->account;
+        $expense->account_id = $request->account_id;
         $expense->text = $request->text;
         $expense->amount = $request->amount;
         $expense->save();

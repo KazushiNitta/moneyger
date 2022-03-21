@@ -33,24 +33,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($incomes as $income)
-                                        <tr>
-                                            <td class="px-4 py-3">{{ $income->date }}</td>
-                                            <td class="px-4 py-3">{{ $income->account->name }}</td>
-                                            <td class="px-4 py-3">{{ $income->text }}</td>
-                                            <td class="px-4 py-3 text-lg text-gray-900">¥{{ number_format($income->amount) }}</td>
-                                            <td class="md:px-2 md:py-3 text-center">
-                                                <button type="button" onclick="location.href='{{ route('income.edit', ['income' => $income->id]) }}'" class="inline-flex text-white bg-blue-500 border-0 py-2 px-2 lg:px-4 focus:outline-none hover:bg-blue-600 rounded text-xs md:text-sm">編集</button>
-                                            </td>
-                                            <form id="delete_{{ $income->id }}" method="post" action="{{ route('income.destroy', ['income' => $income->id]) }}">
-                                                @method('delete')
-                                                @csrf
+                                        @if (count($incomes))
+                                            @foreach ($incomes as $income)
+                                            <tr>
+                                                <td class="px-4 py-3">{{ $income->date }}</td>
+                                                <td class="px-4 py-3">{{ $income->account->name }}</td>
+                                                <td class="px-4 py-3">{{ $income->text }}</td>
+                                                <td class="px-4 py-3 text-lg text-gray-900">¥{{ number_format($income->amount) }}</td>
                                                 <td class="md:px-2 md:py-3 text-center">
-                                                    <a href="#" data-id="{{ $income->id }}" onclick="deletePost(this)" class="inline-flex text-white bg-red-500 border-0 py-2 px-2 lg:px-4 focus:outline-none hover:bg-red-600 rounded text-xs md:text-sm">削除</a>
+                                                    <button type="button" onclick="location.href='{{ route('income.edit', ['income' => $income->id]) }}'" class="inline-flex text-white bg-blue-500 border-0 py-2 px-2 lg:px-4 focus:outline-none hover:bg-blue-600 rounded text-xs md:text-sm">編集</button>
                                                 </td>
-                                            </form>
-                                        </tr>
-                                        @endforeach
+                                                <form id="delete_{{ $income->id }}" method="post" action="{{ route('income.destroy', ['income' => $income->id]) }}">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <td class="md:px-2 md:py-3 text-center">
+                                                        <a href="#" data-id="{{ $income->id }}" onclick="deletePost(this)" class="inline-flex text-white bg-red-500 border-0 py-2 px-2 lg:px-4 focus:outline-none hover:bg-red-600 rounded text-xs md:text-sm">削除</a>
+                                                    </td>
+                                                </form>
+                                            </tr>
+                                            @endforeach
+                                        @else
+                                            <tr><td colspan="6" align="center">データが登録されていません</td></tr>
+                                        @endif
                                     </tbody>
                                 </table>
                                 <div class="mt-8">
