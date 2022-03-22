@@ -17,11 +17,16 @@ class IncomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $incomes = Income::select('id', 'date', 'account_id', 'text', 'amount')->orderBy('date', 'asc')->paginate(10);
+        $incomes = Income::SearchDate($request->start_date, $request->finish_date)
+        ->SearchAccount($request->account_id ?? '0')
+        ->SearchText($request->text)
+        ->SearchAmount($request->amount)
+        ->select('id', 'date', 'account_id', 'text', 'amount')->orderBy('date', 'asc')->paginate(10);
+        $accounts = Account::where('id', '<', 8)->select('id', 'name')->get();
 
-        return view('income.index', compact('incomes'));
+        return view('income.index', compact('incomes', 'accounts'));
     }
 
     /**

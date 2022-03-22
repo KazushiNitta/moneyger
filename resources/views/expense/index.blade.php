@@ -53,7 +53,7 @@
                                             </tr>
                                             @endforeach
                                         @else
-                                            <tr><td colspan="6" align="center">データが登録されていません</td></tr>
+                                            <tr><td colspan="6" align="center">データがありません</td></tr>
                                         @endif
                                     </tbody>
                                 </table>
