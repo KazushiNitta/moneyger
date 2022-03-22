@@ -13,11 +13,16 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $expenses = Expense::select('id', 'date', 'account_id', 'text', 'amount')->orderBy('date', 'asc')->paginate(10);
+        $expenses = Expense::SearchDate($request->start_date, $request->finish_date)
+        ->SearchAccount($request->account_id ?? '0')
+        ->SearchText($request->text)
+        ->SearchAmount($request->amount)
+        ->select('id', 'date', 'account_id', 'text', 'amount')->orderBy('date', 'asc')->paginate(10);
+        $accounts = Account::where('id', '>', 7)->select('id', 'name')->get();
 
-        return view('expense.index', compact('expenses'));
+        return view('expense.index', compact('expenses', 'accounts'));
     }
 
     /**

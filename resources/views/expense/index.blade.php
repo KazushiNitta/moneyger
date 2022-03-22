@@ -20,6 +20,35 @@
                             <div class="mb-8 flex justify-end">
                                 <button type="button" onclick="location.href='{{ route('expense.create') }}'" class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">新規登録</button>
                             </div>
+                            <div class="mb-4">
+                                <form method="get" action="{{ route('expense.index') }}">
+                                    <div class="mb-1">
+                                        <input type="date" name="start_date" value="{{ \Request::get('start_date') }}" class="w-2/12 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                        <span>から</span>
+                                        <input type="date" name="finish_date" value="{{ \Request::get('finish_date') }}" class="w-2/12 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                        <span>まで</span>
+                                    </div>
+                                    <div class="flex">
+                                        <select name="account_id" class="w-2/12 mr-1 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                            <option value="0"
+                                                @if (\Request::get('account_id') == 0)
+                                                    selected
+                                                @endif>全ての科目
+                                            </option>
+                                            @foreach ($accounts as $account)
+                                                <option value="{{ $account->id }}"
+                                                    @if (\Request::get('account_id') == $account->id)
+                                                        selected
+                                                    @endif>{{ $account->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <input type="text" name="text" value="{{ \Request::get('text') }}" placeholder="摘要" class="grow mr-1 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                        <input type="number" name="amount" value="{{ \Request::get('amount') }}" placeholder="金額" class="w-2/12 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-red-500 focus:bg-white focus:ring-2 focus:ring-red-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                        <button type="submit" class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded ml-4">検索</button>
+                                    </div>
+                                </form>
+                            </div>
                             <div class="w-full mx-auto overflow-auto">
                                 <table class="table-auto w-full text-left whitespace-no-wrap">
                                     <thead>
@@ -58,7 +87,13 @@
                                     </tbody>
                                 </table>
                                 <div class="mt-8">
-                                    {{ $expenses->links() }}
+                                    {{ $expenses->appends([
+                                        'start_date' => \Request::get('start_date'),
+                                        'finish_date' => \Request::get('finish_date'),
+                                        'account_id' => \Request::get('account_id'),
+                                        'text' => \Request::get('text'),
+                                        'amount' => \Request::get('amount'),
+                                    ])->links() }}
                                 </div>
                             </div>
                         </div>
