@@ -45,7 +45,7 @@
                                         </select>
                                         <input type="text" name="text" value="{{ \Request::get('text') }}" placeholder="摘要" class="grow mr-1 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         <input type="number" name="amount" value="{{ \Request::get('amount') }}" placeholder="金額" class="w-2/12 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                                        <button type="submit" class="inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded ml-4">検索</button>
+                                        <button type="submit" class="inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded ml-4">絞込</button>
                                     </div>
                                 </form>
                             </div>

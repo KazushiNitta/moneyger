@@ -26,6 +26,9 @@
                     <x-nav-link :href="route('expense.index')" :active="request()->routeIs('expense.index')">
                         支出管理
                     </x-nav-link>
+                    <x-nav-link :href="route('profit-and-loss.index')" :active="request()->routeIs('profit-and-loss.index')">
+                        損益分析
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -85,6 +88,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('expense.index')" :active="request()->routeIs('expense.index')">
                 支出管理
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('profit-and-loss.index')" :active="request()->routeIs('profit-and-loss.index')">
+                損益分析
             </x-responsive-nav-link>
         </div>
 
