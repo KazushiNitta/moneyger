@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\ProfitAndLossController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,9 @@ Route::resource('income', IncomeController::class)
 ->middleware(['auth']);
 
 Route::resource('expense', ExpenseController::class)
+->middleware(['auth']);
+
+Route::resource('profit-and-loss', ProfitAndLossController::class)
 ->middleware(['auth']);
 
 Route::get('/dashboard', function () {
