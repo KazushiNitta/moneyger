@@ -16,7 +16,34 @@
                             <div class="flex flex-col text-center w-full mb-20">
                                 <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">収支一覧</h1>
                             </div>
-                            <div class="-m-4">
+                            <div class="mx-auto mb-6 text-center">
+                                <form method="get" action="{{ route('profit-and-loss.index') }}">
+                                    <input type="month" id="month" name="month" value="{{ \Request::get('month') ?? $date->format('Y-m') }}" class="w-1/2 md:w-3/12 bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                </form>
+                            </div>
+                            <div class="m-4">
+                                <div class="w-2/3 mx-auto md:mb-4 overflow-auto">
+                                    <table class="table-auto w-full text-center whitespace-no-wrap">
+                                        <thead>
+                                            <tr>
+                                                <th class="md:text-2xl font-medium title-font mb-2 text-gray-900">収入</th>
+                                                <th class="md:text-2xl font-medium title-font mb-2 text-gray-900">-</th>
+                                                <th class="md:text-2xl font-medium title-font mb-2 text-gray-900">支出</th>
+                                                <th class="md:text-2xl font-medium title-font mb-2 text-gray-900">=</th>
+                                                <th class="md:text-2xl font-medium title-font mb-2 text-gray-900">収支</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="md:px-4 py-3 md:text-lg text-gray-900">¥{{ number_format(array_sum($incomes)) }}</td>
+                                                <td class="md:px-4 py-3 md:text-lg text-gray-900">-</td>
+                                                <td class="md:px-4 py-3 md:text-lg text-gray-900">¥{{ number_format(array_sum($expenses)) }}</td>
+                                                <td class="md:px-4 py-3 md:text-lg text-gray-900">=</td>
+                                                <td class="md:px-4 py-3 md:text-lg text-gray-900">¥{{ number_format(array_sum($incomes) - array_sum($expenses)) }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                                 <div class="p-4 w-3/4 md:w-2/3 mx-auto">
                                     <div class="h-full bg-gray-100 p-8 rounded">
                                         <div class="flex flex-col text-center w-full mb-10">
@@ -82,4 +109,10 @@
             </div>
         </div>
     </div>
+    <script>
+        const select = document.getElementById('month')
+        select.addEventListener('change', function() {
+            this.form.submit()
+        })
+    </script>
 </x-app-layout>

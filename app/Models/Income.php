@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Account;
+use Carbon\Carbon;
 
 class Income extends Model
 {
@@ -55,7 +56,7 @@ class Income extends Model
             $spaceConvert = mb_convert_kana($text, 's');
             $texts = preg_split('/[\s]+/', $spaceConvert, -1, PREG_SPLIT_NO_EMPTY);
             foreach ($texts as $text) {
-                $query->where('incomes.text', 'like', '%'. $text. '%');
+                $query->where('incomes.text', 'like', '%'. $text . '%');
             }
             return $query;
         } else {
@@ -70,6 +71,18 @@ class Income extends Model
             return $query;
         } else {
             return;
+        }
+    }
+
+    public function scopeSearchMonth($query, $month)
+    {
+        $date = Carbon::now();
+        if (!is_null($month)) {
+            $query->where('incomes.date', 'like', $month . '%');
+            return $query;
+        } else {
+            $query->where('incomes.date', 'like', $date->format('Y-m') . '%');
+            return $query;
         }
     }
 }

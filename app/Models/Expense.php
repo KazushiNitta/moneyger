@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Account;
+use Carbon\Carbon;
 
 class Expense extends Model
 {
@@ -70,6 +71,18 @@ class Expense extends Model
             return $query;
         } else {
             return;
+        }
+    }
+
+    public function scopeSearchMonth($query, $month)
+    {
+        $date = Carbon::now();
+        if (!is_null($month)) {
+            $query->where('expenses.date', 'like', $month . '%');
+            return $query;
+        } else {
+            $query->where('expenses.date', 'like', $date->format('Y-m') . '%');
+            return $query;
         }
     }
 }
