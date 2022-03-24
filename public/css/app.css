@@ -652,11 +652,11 @@ select {
 .z-50 {
   z-index: 50;
 }
-.-m-2 {
-  margin: -0.5rem;
-}
 .m-4 {
   margin: 1rem;
+}
+.-m-2 {
+  margin: -0.5rem;
 }
 .mx-auto {
   margin-left: auto;
@@ -677,11 +677,17 @@ select {
 .-mr-2 {
   margin-right: -0.5rem;
 }
-.mb-10 {
-  margin-bottom: 2.5rem;
-}
 .mb-4 {
   margin-bottom: 1rem;
+}
+.mb-20 {
+  margin-bottom: 5rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-10 {
+  margin-bottom: 2.5rem;
 }
 .mb-8 {
   margin-bottom: 2rem;
@@ -697,12 +703,6 @@ select {
 }
 .mt-1 {
   margin-top: 0.25rem;
-}
-.mb-20 {
-  margin-bottom: 5rem;
-}
-.mb-2 {
-  margin-bottom: 0.5rem;
 }
 .mb-6 {
   margin-bottom: 1.5rem;
@@ -770,14 +770,14 @@ select {
 .h-6 {
   height: 1.5rem;
 }
+.h-full {
+  height: 100%;
+}
 .h-32 {
   height: 8rem;
 }
 .h-20 {
   height: 5rem;
-}
-.h-full {
-  height: 100%;
 }
 .h-8 {
   height: 2rem;
@@ -800,11 +800,17 @@ select {
 .w-6 {
   width: 1.5rem;
 }
-.w-5\/6 {
-  width: 83.333333%;
-}
 .w-full {
   width: 100%;
+}
+.w-2\/3 {
+  width: 66.666667%;
+}
+.w-3\/4 {
+  width: 75%;
+}
+.w-5\/6 {
+  width: 83.333333%;
 }
 .w-24 {
   width: 6rem;
@@ -814,12 +820,6 @@ select {
 }
 .w-1\/2 {
   width: 50%;
-}
-.w-2\/3 {
-  width: 66.666667%;
-}
-.w-3\/4 {
-  width: 75%;
 }
 .w-2\/12 {
   width: 16.666667%;
@@ -999,13 +999,13 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
-.bg-blue-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
-}
 .bg-gray-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+.bg-blue-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 .bg-red-500 {
   --tw-bg-opacity: 1;
@@ -1065,6 +1065,10 @@ select {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
 .py-24 {
   padding-top: 6rem;
   padding-bottom: 6rem;
@@ -1080,10 +1084,6 @@ select {
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-}
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
 }
 .py-6 {
   padding-top: 1.5rem;
@@ -1149,13 +1149,13 @@ select {
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 .text-xs {
   font-size: 0.75rem;
@@ -1622,12 +1622,12 @@ select {
     margin-bottom: 1rem;
   }
 
-  .md\:w-3\/6 {
-    width: 50%;
-  }
-
   .md\:w-2\/3 {
     width: 66.666667%;
+  }
+
+  .md\:w-3\/6 {
+    width: 50%;
   }
 
   .md\:w-3\/12 {

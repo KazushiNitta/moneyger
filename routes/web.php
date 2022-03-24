@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProfitAndLossController;
+use App\Http\Controllers\YearOnYearController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,9 @@ Route::resource('expense', ExpenseController::class)
 ->middleware(['auth']);
 
 Route::resource('profit-and-loss', ProfitAndLossController::class)
+->middleware(['auth']);
+
+Route::resource('year-on-year', YearOnYearController::class)
 ->middleware(['auth']);
 
 Route::get('/dashboard', function () {

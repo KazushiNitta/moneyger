@@ -29,6 +29,9 @@
                     <x-nav-link :href="route('profit-and-loss.index')" :active="request()->routeIs('profit-and-loss.index')">
                         損益分析
                     </x-nav-link>
+                    <x-nav-link :href="route('year-on-year.index')" :active="request()->routeIs('year-on-year.index')">
+                        前年比較
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -91,6 +94,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('profit-and-loss.index')" :active="request()->routeIs('profit-and-loss.index')">
                 損益分析
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('year-on-year.index')" :active="request()->routeIs('year-on-year.index')">
+                前年比較
             </x-responsive-nav-link>
         </div>
 
