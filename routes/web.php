@@ -26,16 +26,16 @@ Route::resource('user', UserController::class)
 ->middleware(['auth']);
 
 Route::resource('income', IncomeController::class)
-->middleware(['auth']);
+->middleware(['auth'])->except(['show']);
 
 Route::resource('expense', ExpenseController::class)
-->middleware(['auth']);
+->middleware(['auth'])->except(['show']);
 
 Route::resource('profit-and-loss', ProfitAndLossController::class)
-->middleware(['auth']);
+->middleware(['auth'])->only(['index']);
 
 Route::resource('year-on-year', YearOnYearController::class)
-->middleware(['auth']);
+->middleware(['auth'])->only(['index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
