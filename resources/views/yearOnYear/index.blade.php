@@ -39,7 +39,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="p-4 w-3/4 md:w-2/3 mx-auto">
+                                <div class="p-4 w-full md:w-2/3 mx-auto">
                                     <div class="h-full bg-gray-100 p-8 rounded">
                                         <div class="flex flex-col text-center w-full mb-10">
                                             <h2 class="text-2xl font-medium title-font mb-2 text-gray-900">収入合計</h2>
@@ -74,7 +74,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="p-4 w-3/4 md:w-2/3 mx-auto">
+                                <div class="p-4 w-full md:w-2/3 mx-auto">
                                     <div class="h-full bg-gray-100 p-8 rounded">
                                         <div class="flex flex-col text-center w-full mb-10">
                                             <h2 class="text-2xl font-medium title-font mb-2 text-gray-900">支出合計</h2>
