@@ -54,5 +54,9 @@
                 </x-button>
             </div>
         </form>
+        <div>
+            <p class="text-center">email : test@test.com</p>
+            <p class="text-center">password : password123</p>
+        </div>
     </x-auth-card>
 </x-guest-layout>

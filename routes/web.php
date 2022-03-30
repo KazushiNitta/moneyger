@@ -20,7 +20,7 @@ use App\Http\Controllers\YearOnYearController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::resource('user', UserController::class)
